@@ -3,10 +3,14 @@ package com.proyectoredsocial.miRedSocial.conf;
 import com.github.javafaker.Faker;
 import com.proyectoredsocial.miRedSocial.model.Clase;
 import com.proyectoredsocial.miRedSocial.model.Estudiante;
+import com.proyectoredsocial.miRedSocial.model.Roles;
+import com.proyectoredsocial.miRedSocial.model.Usuario;
 import com.proyectoredsocial.miRedSocial.repository.ClaseRepository;
 import com.proyectoredsocial.miRedSocial.repository.EstudianteRepository;
+import com.proyectoredsocial.miRedSocial.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,9 +22,39 @@ public class InicializarDatos implements CommandLineRunner {
     @Autowired
     private EstudianteRepository estudianteRepository;
 
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
     @Override
     public void run(String... args) throws Exception {
     	Faker faker = new Faker();
+
+		try {
+			if (usuarioRepository.findByEmail("usuarioejemplo@gmail.com").isEmpty()) {
+				Usuario usuarioejemplo = new Usuario();
+				usuarioejemplo.setNombre("usuarioejemplo");
+				usuarioejemplo.setApellidos("1234");
+				usuarioejemplo.setEmail("usuarioejemplo@gmail.com");
+				usuarioejemplo.setContrasena(passwordEncoder.encode("1234"));
+				usuarioejemplo.getRoles().add(Roles.ROLE_USER);
+				usuarioRepository.save(usuarioejemplo);
+			}
+
+			if (usuarioRepository.findByEmail("admin@gmail.com").isEmpty()) {
+				Usuario admin = new Usuario();
+				admin.setNombre("admin");
+				admin.setApellidos("Fernandez admin");
+				admin.setEmail("crolyx16@gmail.com");
+				admin.setContrasena(passwordEncoder.encode("admin"));
+				admin.getRoles().add(Roles.ROLE_ADMIN);
+				usuarioRepository.save(admin);
+			}
+		} catch (Exception e) {
+
+		}
     	
     	// Crear algunas clases ficticias
     	Clase clase1 = new Clase();

@@ -7,7 +7,7 @@ import com.proyectoredsocial.miRedSocial.model.Estudiante;
 import com.proyectoredsocial.miRedSocial.services.EstudianteService;
 
 import java.util.List;
-
+@CrossOrigin
 @RestController
 public class EstudianteController {
 
