@@ -38,4 +38,5 @@ public class ClaseController {
     public String deleteClase(@PathVariable("id") Long id) {
         return claseService.deleteClase(id);
     }
+    
 }
