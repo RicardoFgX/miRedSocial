@@ -53,10 +53,8 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request.requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/estudiantes/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/estudiantes/**")
-                        .hasAnyAuthority(Roles.ROLE_USER.toString(), Roles.ROLE_ADMIN.toString())
+                        .requestMatchers(HttpMethod.POST, "/estudiantes/**").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/estudiantes/**")
                         .hasAnyAuthority(Roles.ROLE_USER.toString(), Roles.ROLE_ADMIN.toString())
                         .requestMatchers(HttpMethod.DELETE, "/estudiantes/**")

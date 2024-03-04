@@ -47,7 +47,7 @@ public class InicializarDatos implements CommandLineRunner {
 				Usuario admin = new Usuario();
 				admin.setNombre("admin");
 				admin.setApellidos("Fernandez admin");
-				admin.setEmail("crolyx16@gmail.com");
+				admin.setEmail("admin@gmail.com");
 				admin.setContrasena(passwordEncoder.encode("admin"));
 				admin.getRoles().add(Roles.ROLE_ADMIN);
 				usuarioRepository.save(admin);
