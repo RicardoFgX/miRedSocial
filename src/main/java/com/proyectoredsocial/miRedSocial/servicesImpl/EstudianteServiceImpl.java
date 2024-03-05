@@ -1,8 +1,11 @@
 package com.proyectoredsocial.miRedSocial.servicesImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.proyectoredsocial.miRedSocial.exceptions.EstudianteNoEncontradoException;
 import com.proyectoredsocial.miRedSocial.model.Estudiante;
 import com.proyectoredsocial.miRedSocial.repository.EstudianteRepository;
 import com.proyectoredsocial.miRedSocial.services.EstudianteService;
@@ -23,14 +26,13 @@ public class EstudianteServiceImpl implements EstudianteService {
     }
 
     @Override
-    public Estudiante getEstudianteById(Long id) {
-        Optional<Estudiante> estudiante = estudianteRepository.findById(id);
-        return estudiante.orElse(null);
+    public Optional<Estudiante> getEstudianteById(Long id) {
+    	return estudianteRepository.findById(id);
     }
 
     @Override
-    public List<Estudiante> getAllEstudiantes() {
-        return estudianteRepository.findAll();
+    public Page<Estudiante> getAllEstudiantes(Pageable pageable) {
+        return estudianteRepository.findAll(pageable);
 
     }
 
@@ -46,18 +48,21 @@ public class EstudianteServiceImpl implements EstudianteService {
             updatedEstudiante.setApellido(estudiante.getApellido());
             updatedEstudiante.setMatricula(estudiante.getMatricula());
 
-            // Añadir lógica para otras propiedades según sea necesario
-
             return estudianteRepository.save(updatedEstudiante);
-        }
-
+        } 
+        
         return null;
+        
+
     }
 
-    @Override
-    public String deleteEstudiante(Long id) {
-        estudianteRepository.deleteById(id);
-        return "id " + id + " is deleted successfully";
+    public Boolean deleteEstudiante(Long id) {
+        if (estudianteRepository.existsById(id)) {
+            estudianteRepository.deleteById(id);
+            return true; // Si se eliminó con éxito
+        } else {
+            return false; // Si no se encontró el estudiante
+        }
     }
 
 }
