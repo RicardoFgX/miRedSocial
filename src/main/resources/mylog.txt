@@ -35,3 +35,5 @@
 [2024-03-05T23:58:19.893+01:00] No hay estudiantes registrados en el sistema.
 [2024-03-06T00:01:10.844+01:00] Error durante la inicialización de datos.
 [2024-03-06T00:01:48.494+01:00] No hay estudiantes registrados en el sistema.
+[2024-03-06T00:36:23.886+01:00] Error durante la inicialización de datos.
+[2024-03-06T00:36:35.798+01:00] No hay estudiantes registrados en el sistema.

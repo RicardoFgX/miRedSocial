@@ -1,12 +1,11 @@
 package com.proyectoredsocial.miRedSocial.services;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.proyectoredsocial.miRedSocial.model.Estudiante;
+
+import java.util.Optional;
 
 /**
  * Interfaz que define los métodos para el servicio de gestión de estudiantes.
@@ -53,4 +52,15 @@ public interface EstudianteService {
      * @return El estudiante actualizado.
      */
     Estudiante updateEstudiante(Long id, Estudiante estudiante);
+
+    /**
+     * Filtra estudiantes por nombre, apellido y/o clase.
+     *
+     * @param nombre   El nombre a filtrar.
+     * @param apellido El apellido a filtrar.
+     * @param claseId  El ID de la clase a la que pertenecen los estudiantes.
+     * @param pageable Configuración de paginación.
+     * @return Página de estudiantes filtrados por nombre, apellido y/o clase.
+     */
+    Page<Estudiante> filtrarEstudiantes(String nombre, String apellido, Long claseId, Pageable pageable);
 }

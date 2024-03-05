@@ -97,5 +97,66 @@ public class EstudianteServiceImpl implements EstudianteService {
             return false; // Si no se encontró el estudiante
         }
     }
+    
+    /**
+     * Filtra estudiantes por nombre, apellido o clase.
+     *
+     * @param nombre   El nombre a filtrar.
+     * @param apellido El apellido a filtrar.
+     * @param claseId  El ID de la clase a la que pertenecen los estudiantes.
+     * @param pageable Configuración de paginación.
+     * @return Página de estudiantes filtrados.
+     * @throws IllegalArgumentException Si no se proporciona al menos un criterio de filtrado.
+     */
+    @Override
+    public Page<Estudiante> filtrarEstudiantes(String nombre, String apellido, Long claseId, Pageable pageable) {
+        if (nombre == null && apellido == null && claseId == null) {
+            throw new IllegalArgumentException("Debe proporcionar al menos un criterio de filtrado");
+        }
+
+        if (nombre != null) {
+            return filtrarPorNombre(nombre, pageable);
+        } else if (apellido != null) {
+            return filtrarPorApellido(apellido, pageable);
+        } else {
+            return filtrarPorClase(claseId, pageable);
+        }
+    }
+
+    /**
+     * Filtra estudiantes por nombre.
+     *
+     * @param nombre   El nombre a filtrar.
+     * @param pageable Configuración de paginación.
+     * @return Página de estudiantes filtrados por nombre.
+     */
+    private Page<Estudiante> filtrarPorNombre(String nombre, Pageable pageable) {
+        // Lógica de filtrado por nombre
+        return estudianteRepository.findByNombreContainingIgnoreCase(nombre, pageable);
+    }
+
+    /**
+     * Filtra estudiantes por apellido.
+     *
+     * @param apellido El apellido a filtrar.
+     * @param pageable Configuración de paginación.
+     * @return Página de estudiantes filtrados por apellido.
+     */
+    private Page<Estudiante> filtrarPorApellido(String apellido, Pageable pageable) {
+        // Lógica de filtrado por apellido
+        return estudianteRepository.findByApellidoContainingIgnoreCase(apellido, pageable);
+    }
+
+    /**
+     * Filtra estudiantes por clase.
+     *
+     * @param claseId  El ID de la clase a la que pertenecen los estudiantes.
+     * @param pageable Configuración de paginación.
+     * @return Página de estudiantes filtrados por clase.
+     */
+    private Page<Estudiante> filtrarPorClase(Long claseId, Pageable pageable) {
+        // Lógica de filtrado por clase
+        return estudianteRepository.findByClaseId(claseId, pageable);
+    }
 }
 
