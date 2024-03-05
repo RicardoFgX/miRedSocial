@@ -4,6 +4,8 @@ import com.proyectoredsocial.miRedSocial.exceptions.EstudianteNoEncontradoExcept
 import com.proyectoredsocial.miRedSocial.exceptions.ListaEstudiantesVaciaException;
 import com.proyectoredsocial.miRedSocial.model.Estudiante;
 import com.proyectoredsocial.miRedSocial.services.EstudianteService;
+import com.proyectoredsocial.miRedSocial.util.LogUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -35,7 +37,7 @@ public class EstudianteController {
             Estudiante savedEstudiante = estudianteService.saveEstudiante(estudiante);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedEstudiante);
         } catch (Exception e) {
-            // Manejar otras excepciones
+            LogUtil.escribirEnLog("Error inesperado al guardar el estudiante: " + e.getMessage(), "src/main/resources/mylog.txt");
             System.err.println("Error inesperado al guardar el estudiante: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error inesperado al obtener el estudiante:" + e.getMessage());
         }
@@ -60,6 +62,7 @@ public class EstudianteController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Estudiante no encontrado: " + e.getMessage());
         } catch (Exception e) {
             System.err.println("Error inesperado: " + e.getMessage());
+            LogUtil.escribirEnLog("Error inesperado al buscar el estudiante: " + e.getMessage(), "src/main/resources/mylog.txt");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error inesperado al obtener el estudiante.");
         }
     }
@@ -74,17 +77,27 @@ public class EstudianteController {
      * @throws ListaEstudiantesVaciaException Si no hay estudiantes registrados en el sistema.
      */
     @GetMapping("/estudiantes")
-    public Page<Estudiante> getAllEstudiantes(@RequestParam(required = false, defaultValue = "0") Integer page,
-                                              @RequestParam(required = false, defaultValue = "10") Integer size) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<Estudiante> estudiantesPage = estudianteService.getAllEstudiantes(pageable);
+    public ResponseEntity<?> getAllEstudiantes(@RequestParam(required = false, defaultValue = "0") Integer page,
+                                               @RequestParam(required = false, defaultValue = "10") Integer size) {
+        try {
+            Pageable pageable = PageRequest.of(page, size);
+            Page<Estudiante> estudiantesPage = estudianteService.getAllEstudiantes(pageable);
 
-        if (estudiantesPage.isEmpty()) {
-            throw new ListaEstudiantesVaciaException("No hay estudiantes registrados en el sistema.");
+            if (estudiantesPage.isEmpty()) {
+                throw new ListaEstudiantesVaciaException("No hay estudiantes registrados en el sistema.");
+            }
+
+            return ResponseEntity.ok(estudiantesPage);
+        } catch (ListaEstudiantesVaciaException e) {
+            System.err.println("Error: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error al obtener la lista de estudiantes: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Error inesperado: " + e.getMessage());
+            LogUtil.escribirEnLog("Error inesperado al obtener la lista de estudiantes: " + e.getMessage(), "src/main/resources/mylog.txt");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error inesperado al obtener la lista de estudiantes.");
         }
-
-        return estudiantesPage;
     }
+
 
     /**
      * Endpoint para actualizar un estudiante por su ID.
@@ -110,6 +123,7 @@ public class EstudianteController {
         } catch (Exception e) {
             // Manejar otras excepciones
             System.err.println("Error inesperado al actualizar el estudiante: " + e.getMessage());
+            LogUtil.escribirEnLog("Error inesperado al borrar el estudiante: " + e.getMessage(), "src/main/resources/mylog.txt");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el estudiante: " + e.getMessage());
         }
     }

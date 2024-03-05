@@ -32,3 +32,6 @@
 [2024-03-05T23:47:03.564+01:00] No se encuentra el estudiante con ID: 100000
 [2024-03-05T23:47:44.755+01:00] No se encuentra el estudiante con ID: 1000
 [2024-03-05T23:51:13.779+01:00] Error durante la inicialización de datos.
+[2024-03-05T23:58:19.893+01:00] No hay estudiantes registrados en el sistema.
+[2024-03-06T00:01:10.844+01:00] Error durante la inicialización de datos.
+[2024-03-06T00:01:48.494+01:00] No hay estudiantes registrados en el sistema.

@@ -1,4 +1,16 @@
 package com.proyectoredsocial.miRedSocial.model;
+
+/**
+ * Enumeración que define los roles de los usuarios en el sistema.
+ */
 public enum Roles {
-    ROLE_USER, ROLE_ADMIN
+    /**
+     * Rol para usuarios regulares.
+     */
+    ROLE_USER,
+
+    /**
+     * Rol para administradores del sistema.
+     */
+    ROLE_ADMIN
 }
