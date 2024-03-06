@@ -8,17 +8,21 @@ Este proyecto es una aplicación de red social desarrollada con el framework Spr
    - Registro y autenticación de usuarios.
    - Gestión de información de usuario.
 
-2. **Clases:**
-   - Creación, actualización y eliminación de clases.
-   - Obtención de clases y selección aleatoria.
-
-3. **Estudiantes:**
+2. **Estudiantes:**
    - Gestión de información de estudiantes.
    - Paginación y filtrado de estudiantes.
 
-4. **Seguridad:**
+3. **Seguridad:**
    - Implementación de autenticación y autorización con Spring Security.
    - Generación y validación de tokens JWT.
+
+- **Otras funciones implementadas:**
+   - Se ha implementado un sistema de paginado
+   - Se ha implementado los métodos para llevar a cabo el filtrado, en la clase [EstudianteServiceImpl](/src/main/java/com/proyectoredsocial/miRedSocial/servicesImpl/EstudianteServiceImpl.java)
+   - Se ha realizado los [test](/src/test/) a diferentes métodos de la aplicación 
+   - Se han realizado diferentes pruebas con PostMan, recogidas en el siguiente [Json](/Postman/app-API.postman_collection.json)
+   - Se ha generado la [documentación](/doc/)
+   - Se ha elaborado un pequeño [front](/Mini-Front-Html_Js/) para consumir funciones muy sencillas de la API
 
 ## Tecnologías Utilizadas
 
@@ -38,7 +42,7 @@ Este proyecto es una aplicación de red social desarrollada con el framework Spr
 ## Configuración
 
 1. Configura la base de datos en `application.properties` con tu URL, usuario y contraseña.
-2. Ejecuta el script SQL proporcionado en `src/main/resources` para inicializar la base de datos.
+2. Tener una base de datos con el nombre utilizado en `application.properties`, en este caso se llama ***dbEjemplo***
 
 ## Ejecución del Proyecto
 
