@@ -63,3 +63,9 @@
 [2024-03-06T10:17:31.352+01:00] No hay estudiantes registrados en el sistema.
 [2024-03-06T10:22:11.140+01:00] Error durante la inicialización de datos.
 [2024-03-06T10:22:56.618+01:00] No hay estudiantes registrados en el sistema.
+[2024-03-06T10:24:14.829+01:00] No hay estudiantes registrados en el sistema.
+[2024-03-06T10:25:15.354+01:00] No hay estudiantes registrados en el sistema.
+[2024-03-06T10:26:04.515+01:00] No hay estudiantes registrados en el sistema.
+[2024-03-06T10:26:13.540+01:00] Error inesperado al obtener la lista de estudiantes: Page index must not be less than zero
+[2024-03-06T10:29:58.607+01:00] No hay estudiantes registrados en el sistema.
+[2024-03-06T10:30:37.731+01:00] No hay estudiantes registrados en el sistema.

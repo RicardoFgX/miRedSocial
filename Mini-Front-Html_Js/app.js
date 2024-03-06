@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let pageNumber = 0;
     let currentPage = 0;
     let apiUrl = `http://localhost:8080/estudiantes?page=${pageNumber}`;
+    let totalPages = 0;
 
     const loadEstudiantes = () => {
         estudiantesList.innerHTML = "";
@@ -17,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 data.content.forEach(estudiante => {
                     const listItem = document.createElement("tr");
                     listItem.innerHTML = `<td>${estudiante.id}</td><td>${estudiante.nombre}</td><td>${estudiante.apellido}</td><td>${estudiante.matricula}</td>`;
-                    
+
                     listItem.addEventListener("click", () => {
                         window.location.href = `detalleEstudiante.html?id=${estudiante.id}`;
                     });
@@ -25,7 +26,24 @@ document.addEventListener("DOMContentLoaded", () => {
                     estudiantesList.appendChild(listItem);
                 });
 
+                totalPages = data.totalPages;
+                console.log(totalPages);
                 currentPage = data.number;
+                console.log(totalPages);
+
+                // Verificar si estamos en la primera página y ocultar el botón previo
+                if (currentPage === 0) {
+                    prevPageBtn.style.display = "none";
+                } else {
+                    prevPageBtn.style.display = "inline-block";
+                }
+
+                // Verificar si estamos en la última página y ocultar el botón siguiente
+                if (totalPages - currentPage <= 1) {
+                    nextPageBtn.style.display = "none";
+                } else {
+                    nextPageBtn.style.display = "inline-block";
+                }
 
 
             })
