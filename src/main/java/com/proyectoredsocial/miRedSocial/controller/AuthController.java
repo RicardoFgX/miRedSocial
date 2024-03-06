@@ -27,6 +27,7 @@ public class AuthController {
      * Inyección del servicio de autenticación.
      */
     @Autowired
+	public
     AuthenticationService authenticationService;
 
     /**

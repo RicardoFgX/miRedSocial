@@ -38,3 +38,22 @@
 [2024-03-06T00:36:23.886+01:00] Error durante la inicialización de datos.
 [2024-03-06T00:36:35.798+01:00] No hay estudiantes registrados en el sistema.
 [2024-03-06T00:45:11.772+01:00] Error durante la inicialización de datos.
+[2024-03-06T02:34:34.208+01:00] Error durante la inicialización de datos.
+[2024-03-06T02:35:09.045+01:00] Error durante la inicialización de datos.
+[2024-03-06T02:36:15.866+01:00] Error durante la inicialización de datos.
+[2024-03-06T02:38:43.949+01:00] Error durante la inicialización de datos.
+[2024-03-06T02:44:19.829+01:00] Error durante la inicialización de datos.
+[2024-03-06T02:52:37.255+01:00] Error durante la inicialización de datos.
+[2024-03-06T02:56:14.331+01:00] Error durante la inicialización de datos.
+[2024-03-06T03:13:45.833+01:00] Error durante la inicialización de datos.
+[2024-03-06T03:14:35.018+01:00] Error durante la inicialización de datos.
+[2024-03-06T03:15:14.659+01:00] Error durante la inicialización de datos.
+[2024-03-06T03:17:36.198+01:00] Error durante la inicialización de datos.
+[2024-03-06T03:21:10.524+01:00] Error durante la inicialización de datos.
+[2024-03-06T03:21:45.136+01:00] Error durante la inicialización de datos.
+[2024-03-06T03:23:27.005+01:00] Error durante la inicialización de datos.
+[2024-03-06T03:27:45.179+01:00] Error durante la inicialización de datos.
+[2024-03-06T03:28:52.954+01:00] Error durante la inicialización de datos.
+[2024-03-06T03:33:48.426+01:00] Error durante la inicialización de datos.
+[2024-03-06T03:33:53.687+01:00] Error durante la inicialización de datos.
+[2024-03-06T03:33:56.070+01:00] Error inesperado al guardar el estudiante: could not execute statement [Column 'apellido' cannot be null] [insert into estudiantes (apellido,ciudad,clase_id,edad,matricula,nombre) values (?,?,?,?,?,?)]; SQL [insert into estudiantes (apellido,ciudad,clase_id,edad,matricula,nombre) values (?,?,?,?,?,?)]; constraint [null]
