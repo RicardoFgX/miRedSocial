@@ -30,13 +30,6 @@ public class UsuarioServiceImpl implements UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     /**
-     * Crea un nuevo objeto UsuarioServiceImpl (Es para las pruebas).
-     */
-    public UsuarioServiceImpl(UsuarioRepository usuarioRepository2) {
-
-    }
-
-    /**
      * Retorna un objeto UserDetailsService que carga los detalles de usuario por nombre de usuario.
      *
      * @return Un objeto UserDetailsService para cargar los detalles de usuario.

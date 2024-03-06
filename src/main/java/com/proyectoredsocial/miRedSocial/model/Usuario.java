@@ -28,26 +28,44 @@ import jakarta.validation.constraints.NotBlank;
  */
 @Entity
 public class Usuario implements UserDetails {
-
+	
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Identificador único del usuario en la base de datos.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * Campo nombre de usuario
+     */
     @NotBlank(message = "El nombre no puede estar en blanco")
     private String nombre;
 
+    /**
+     * Campo apellidos del usuario
+     */
     @NotBlank(message = "Los apellidos no pueden estar en blanco")
     private String apellidos;
 
+    /**
+     * Email del usuario
+     */
     @Column(unique = true)
     @Email(message = "La dirección de correo electrónico debe ser válida")
     private String email;
 
+    /**
+     * Contrasena del usuario
+     */
     @NotBlank(message = "La contraseña no puede estar en blanco")
     private String contrasena;
 
+    /**
+     * Rol del usuario
+     */
     @ElementCollection(fetch = FetchType.EAGER, targetClass = Roles.class)
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "usuario_rol")

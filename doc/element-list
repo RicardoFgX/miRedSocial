@@ -1,0 +1,14 @@
+com.proyectoredsocial.miRedSocial
+com.proyectoredsocial.miRedSocial.conf
+com.proyectoredsocial.miRedSocial.controller
+com.proyectoredsocial.miRedSocial.controllers
+com.proyectoredsocial.miRedSocial.dtos
+com.proyectoredsocial.miRedSocial.dtos.request
+com.proyectoredsocial.miRedSocial.dtos.response
+com.proyectoredsocial.miRedSocial.exceptions
+com.proyectoredsocial.miRedSocial.model
+com.proyectoredsocial.miRedSocial.models
+com.proyectoredsocial.miRedSocial.repository
+com.proyectoredsocial.miRedSocial.services
+com.proyectoredsocial.miRedSocial.servicesImpl
+com.proyectoredsocial.miRedSocial.util

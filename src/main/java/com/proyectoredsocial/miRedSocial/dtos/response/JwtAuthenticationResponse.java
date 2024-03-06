@@ -36,10 +36,13 @@ public class JwtAuthenticationResponse {
 
     /**
      * Creador de instancias para construir objetos JwtAuthenticationResponse de manera fluida.
+     *
+     * @return Instancia de JwtAuthenticationResponseBuilder para construir objetos JwtAuthenticationResponse.
      */
     public static JwtAuthenticationResponseBuilder builder() {
         return new JwtAuthenticationResponseBuilder();
     }
+
 
     /**
      * Clase interna que actúa como constructor de JwtAuthenticationResponse para construcción fluida.
