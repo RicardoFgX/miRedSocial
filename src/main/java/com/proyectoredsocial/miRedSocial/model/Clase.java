@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -71,23 +73,5 @@ public class Clase {
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-    
-    /**
-     * Obtiene la lista de estudiantes asociados a la clase.
-     *
-     * @return Lista de estudiantes asociados a la clase.
-     */
-    public List<Estudiante> getEstudiantes() {
-        return estudiantes;
-    }
-
-    /**
-     * Establece la lista de estudiantes asociados a la clase.
-     *
-     * @param estudiantes Lista de estudiantes asociados a la clase.
-     */
-    public void setEstudiantes(List<Estudiante> estudiantes) {
-        this.estudiantes = estudiantes;
     }
 }

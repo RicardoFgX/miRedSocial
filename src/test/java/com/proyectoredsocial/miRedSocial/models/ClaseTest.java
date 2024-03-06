@@ -51,25 +51,4 @@ public class ClaseTest {
         clase.setNombre("Matematicas");
         assertEquals("Matematicas", clase.getNombre());
     }
-
-    /**
-     * Prueba para el método getEstudiantes().
-     */
-    @Test
-    void getEstudiantes() {
-        clase.setEstudiantes(Collections.singletonList(estudiante));
-        assertNotNull(clase.getEstudiantes());
-        assertEquals(1, clase.getEstudiantes().size());
-    }
-
-    /**
-     * Prueba para el método setEstudiantes().
-     */
-    @Test
-    void setEstudiantes() {
-        Estudiante anotherEstudianteMock = mock(Estudiante.class);
-        clase.setEstudiantes(Collections.singletonList(anotherEstudianteMock));
-        assertNotNull(clase.getEstudiantes());
-        assertEquals(1, clase.getEstudiantes().size());
-    }
 }
