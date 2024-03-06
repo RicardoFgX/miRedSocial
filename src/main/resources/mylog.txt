@@ -57,3 +57,5 @@
 [2024-03-06T03:33:48.426+01:00] Error durante la inicialización de datos.
 [2024-03-06T03:33:53.687+01:00] Error durante la inicialización de datos.
 [2024-03-06T03:33:56.070+01:00] Error inesperado al guardar el estudiante: could not execute statement [Column 'apellido' cannot be null] [insert into estudiantes (apellido,ciudad,clase_id,edad,matricula,nombre) values (?,?,?,?,?,?)]; SQL [insert into estudiantes (apellido,ciudad,clase_id,edad,matricula,nombre) values (?,?,?,?,?,?)]; constraint [null]
+[2024-03-06T03:52:08.245+01:00] Error durante la inicialización de datos.
+[2024-03-06T03:53:20.146+01:00] No hay estudiantes registrados en el sistema.

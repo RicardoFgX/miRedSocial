@@ -1,0 +1,520 @@
+{
+	"info": {
+		"_postman_id": "efe6a5e9-b89f-45ed-8218-1dc2e589aa34",
+		"name": "app-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31929458",
+		"_collection_link": "https://lively-meteor-894720.postman.co/workspace/EVIDEN_DUAL~09c02d01-1635-4104-be48-65662ef77dc0/collection/31929458-efe6a5e9-b89f-45ed-8218-1dc2e589aa34?action=share&source=collection_link&creator=31929458"
+	},
+	"item": [
+		{
+			"name": "MétodosEstudiantes",
+			"item": [
+				{
+					"name": "ListarTodosEstudiantesPorPagina",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Código de estado es 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"El tiempo de respuesta es inferior a 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La respuesta es un objeto con la propiedad 'content'\", function () {\r",
+									"    pm.expect(pm.response.json()).to.be.an('object').that.has.property('content');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Cada elemento en el array 'content' tiene un 'id' mayor que 0\", function () {\r",
+									"    pm.response.json().content.forEach(function(estudiante) {\r",
+									"        pm.expect(estudiante.id).to.be.above(0);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Cada elemento en el array 'content' tiene un 'nombre' que es una cadena no vacía\", function () {\r",
+									"    pm.response.json().content.forEach(function(estudiante) {\r",
+									"        pm.expect(estudiante.nombre).to.be.a('string').and.to.not.be.empty;\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Cada elemento en el array 'content' tiene un 'apellido' que es una cadena no vacía\", function () {\r",
+									"    pm.response.json().content.forEach(function(estudiante) {\r",
+									"        pm.expect(estudiante.apellido).to.be.a('string').and.to.not.be.empty;\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Cada elemento en el array 'content' tiene una 'matricula' que es una cadena no vacía\", function () {\r",
+									"    pm.response.json().content.forEach(function(estudiante) {\r",
+									"        pm.expect(estudiante.matricula).to.be.a('string').and.to.not.be.empty;\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Cada elemento en el array 'content' tiene una 'edad' que es un número\", function () {\r",
+									"    pm.response.json().content.forEach(function(estudiante) {\r",
+									"        pm.expect(estudiante.edad).to.be.a('number');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Cada elemento en el array 'content' tiene una 'ciudad' que es una cadena no vacía\", function () {\r",
+									"    pm.response.json().content.forEach(function(estudiante) {\r",
+									"        pm.expect(estudiante.ciudad).to.be.a('string').and.to.not.be.empty;\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Cada elemento en el array 'content' tiene una 'clase' que es un objeto con la propiedad 'id'\", function () {\r",
+									"    pm.response.json().content.forEach(function(estudiante) {\r",
+									"        pm.expect(estudiante.clase).to.be.an('object').that.has.property('id');\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estudiantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estudiantes"
+							]
+						},
+						"description": "Metodo Get que devuelve la primera pagina(por defecto) de estudiantes"
+					},
+					"response": []
+				},
+				{
+					"name": "ListarTodosEstudiantesPorPaginaInexistente",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estudiantes?page=100",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estudiantes"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "100"
+								}
+							]
+						},
+						"description": "Lista a todos los estudiantes de una pagina que no existe, manda un mensaje de error."
+					},
+					"response": []
+				},
+				{
+					"name": "ListarUnEstudiantesPorID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estudiantes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estudiantes",
+								"1"
+							]
+						},
+						"description": "Peticion que devuelve el estudiante con una ID concreta"
+					},
+					"response": []
+				},
+				{
+					"name": "ListarUnEstudiantesPorIDErroneoMissingID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estudiantes/2000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estudiantes",
+								"2000"
+							]
+						},
+						"description": "Peticion para probar el mensaje de error y el estado de la solicitud cuando se busca un estudiante que no existe"
+					},
+					"response": []
+				},
+				{
+					"name": "AñadirNuevoEstudiante",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MDk2Nzg2ODIsImV4cCI6MTcwOTcxNDY4Mn0.HAKdg_WU2Bv2VL0X1Jzx9mSZ0_BJ1r4_hm-3Z0kycxg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"12\",\r\n    \"apellido\": \"1\",\r\n    \"matricula\": \"1233\",\r\n    \"edad\": 21,\r\n    \"ciudad\": \"East Grant\",\r\n    \"clase\": {\r\n        \"id\": 6,\r\n        \"nombre\": \"Educación Física\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estudiantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estudiantes"
+							]
+						},
+						"description": "Metodo Post para crear y añadir un nuevo estudiante a la base de datos"
+					},
+					"response": []
+				},
+				{
+					"name": "AñadirNuevoEstudianteErroneoSinMatricula",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MDk2Nzg2ODIsImV4cCI6MTcwOTcxNDY4Mn0.HAKdg_WU2Bv2VL0X1Jzx9mSZ0_BJ1r4_hm-3Z0kycxg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"12\",\r\n    \"apellido\": \"1\",\r\n\r\n    \"edad\": 21,\r\n    \"ciudad\": \"East Grant\",\r\n    \"clase\": {\r\n        \"id\": 6,\r\n        \"nombre\": \"Educación Física\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estudiantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estudiantes"
+							]
+						},
+						"description": "Peticion Post para probar el caso de intentar añadir un estudiante que no en cuya peticion no se introduce el campo matricula"
+					},
+					"response": []
+				},
+				{
+					"name": "BorrarEstudiante",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MDk2Nzc0MjEsImV4cCI6MTcwOTcxMzQyMX0.W3R2DK-pod1jA_2ztvj6A9xye2O3EtUpzAoe9Znr6M8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estudiantes/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estudiantes",
+								"5"
+							]
+						},
+						"description": "Peticion para borrar un estudiante mediante su ID"
+					},
+					"response": []
+				},
+				{
+					"name": "BorrarEstudianteErroneo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MDk2Nzc0MjEsImV4cCI6MTcwOTcxMzQyMX0.W3R2DK-pod1jA_2ztvj6A9xye2O3EtUpzAoe9Znr6M8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estudiantes/1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estudiantes",
+								"1000"
+							]
+						},
+						"description": "Peticion para probar el intento de borrar un estudiante con una ID inexistente"
+					},
+					"response": []
+				},
+				{
+					"name": "ModificarUnEstudiantePorID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MDk2NzgxNjYsImV4cCI6MTcwOTcxNDE2Nn0.ipUks0lilRIldUBy4RPezOR_DanRM4pqSi5b9SgLg3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3,\r\n    \"nombre\": \"Juan\",\r\n    \"apellido\": \"Mitchell\",\r\n    \"matricula\": \"213123\",\r\n    \"edad\": 21,\r\n    \"ciudad\": \"North Elizabethbury\",\r\n    \"clase\": {\r\n        \"id\": 3,\r\n        \"nombre\": \"Ciencias\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estudiantes/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estudiantes",
+								"3"
+							]
+						},
+						"description": "Peticion PUT para modificar la informacion de un estudiante pasandole la ID"
+					},
+					"response": []
+				},
+				{
+					"name": "ModificarUnEstudiantePorIDErroneoMissingID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MDk2NzgxNjYsImV4cCI6MTcwOTcxNDE2Nn0.ipUks0lilRIldUBy4RPezOR_DanRM4pqSi5b9SgLg3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Juan\",\r\n    \"apellido\": \"Mitchell\",\r\n    \"matricula\": \"12344434\",\r\n    \"edad\": 21,\r\n    \"ciudad\": \"North Elizabethbury\",\r\n    \"clase\": {\r\n        \"id\": 3,\r\n        \"nombre\": \"Ciencias\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estudiantes/1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estudiantes",
+								"1000"
+							]
+						},
+						"description": "Peticion PUT para intentar actualizar la información de un usuario que no existe."
+					},
+					"response": []
+				}
+			],
+			"description": "Aqui se evaluan los endpoints del controlador de los estudiantes y tambien los posibles casos de error."
+		},
+		{
+			"name": "MétodosAuth",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Ricardo\",\r\n  \"apellidos\": \"Fernandez\",\r\n  \"email\": \"1234@ejemplo.com\",\r\n  \"contrasena\": \"1234\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"signup"
+							]
+						},
+						"description": "\n### Auth Signup\n\nThis endpoint is used to sign up a new user.\n\n#### Request Body\n- nombre (text, required): The first name of the user.\n- apellidos (text, required): The last name of the user.\n- email (text, required): The email address of the user.\n- contrasena (text, required): The password for the user account.\n\n#### Response\n- Status: 200\n- Content-Type: text/xml\n- Response Body: null\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"admin@gmail.com\",\r\n  \"contrasena\": \"admin\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"signin"
+							]
+						},
+						"description": "This endpoint is used to authenticate and sign in a user. The HTTP POST request should be made to [http://localhost:8080/auth/signin](http://localhost:8080/auth/signin) with the user's email and password provided in the request body.\n\n### Request Body\n\n- email (text, required): The email of the user.\n- contrasena (text, required): The password of the user.\n    \n\n### Response\n\nUpon successful execution, the response will have a status code of 200 and the content type will be text/xml. The response body will contain the authentication token or user information."
+					},
+					"response": []
+				}
+			],
+			"description": "Aquí se evaluan los endpoints para hacer login y register"
+		}
+	]
+}
