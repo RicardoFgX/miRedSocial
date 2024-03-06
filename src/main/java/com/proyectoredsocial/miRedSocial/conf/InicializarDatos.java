@@ -65,7 +65,7 @@ public class InicializarDatos implements CommandLineRunner {
                 usuarioRepository.save(admin);
             }
             //Esto es simplemente para que se pruebe el log de excepciones, el mensaje del log se encuentra en resources/mylog.txt
-            throw new InicializarDatosException("Error durante la inicialización de datos.");
+            throw new InicializarDatosException("Esto es meramente una prueba de log al iniciar");
         } catch (InicializarDatosException e) {
             System.out.println("Excepción capturada: " + e.getMessage());
         }
